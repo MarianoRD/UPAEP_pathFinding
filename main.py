@@ -6,44 +6,16 @@ iterations = 0 # Iterations done by the algorithms
 
 # Classes
 class MazePosition(object):
-    """Class to store the coordinates from a position in the maze."""
+    """Class to store the information of the position in the maze."""
 
-    x = -1
-    y = -1
     obstacle = False
     used = False
 
-    def __init__(self, x, y, obstacle):
-        self.x = x
-        self.y = y
+    def __init__(self, obstacle):
         self.obstacle = obstacle
 
-    def move(self, option):
-        if (option == 'up' and not self.obstacle and not self.used):
-            temp = move_up()
-        elif (option == 'down' and not self.obstacle and not self.used):
-            temp = move_down()
-        elif (option == 'right' and not self.obstacle and not self.used):
-            temp = move_right()
-        elif (option == 'left' and not self.obstacle and not self.used):
-            temp = move_left()
-        else:
-            temp = None
-
+    def setUsed(self):
         self.used = True
-        return temp
-
-    def move_up(self):
-            return (self.x, self.y-1)
-
-    def move_down(self):
-        return (self.x, self.y+1)
-
-    def move_left(self):
-        return(self.x+1, self.y)
-
-    def move_right(self):
-        return(self.x-1, self.y)
 
 class Maze():
     """Maze structure."""
@@ -51,12 +23,33 @@ class Maze():
     # Attributes
     dimension = 0
     grid = [[]]
-    start = []
-    end = []
+    start = [0, 0]
+    end = [0, 0]
 
     def __init__(self, n):
         dimension = n
-        self.grid = [[MazePosition(x, y, False) for x in range(n)] for y in range(n)]
+        self.grid = [[MazePosition(False) for x in range(n)] for y in range(n)]
+
+    def move(self, position, option):
+        if (option == 'up'):
+            position[1] = -1
+        elif (option == 'down'):
+            position[1] = 1
+        elif (option == 'right'):
+            position[0] = 1
+        elif (option == 'left'):
+            position[1] = -1
+        else:
+            temp = None
+        # Check if the position is a valid and new option
+        if ( (position[0] > -1) and (position[1] > -1)):
+            temp = self.grid[position[0]][position[1]]
+            if (temp.obstacle or temp.used):
+                 return None
+            else:
+                return position
+        else:
+            return None
 
     def print(self):
         pass
@@ -66,13 +59,13 @@ class Maze():
 # Breadth First Search
 def bfs(begin, end):
     q = queue.Queue()
-    q.put(maze.getPosition(begin))
+    q.put(maze.start)
     moves = ['up', 'down', 'right', 'left']
     while not q.empty():
         v = q.get()
-        if ( (v.x == end.x) and (v.y == end.y) ):
+        if ( (v[0] == end.x) and (v[1] == end.y) ):
             return v
         for x in moves:
-            temp = maze.getPosition(v.move(x))
+            temp = maze.move(v, x)
             if (temp != None):
                 q.put(temp)
