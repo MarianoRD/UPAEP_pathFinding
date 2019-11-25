@@ -31,6 +31,7 @@ class Maze():
         self.grid = [[MazePosition(False) for x in range(n)] for y in range(n)]
 
     def move(self, position, option):
+        self.grid[position[0]][position[1]].setUsed()
         if (option == 'up'):
             position[1] = -1
         elif (option == 'down'):
@@ -57,9 +58,9 @@ class Maze():
 # Algorithms
 
 # Breadth First Search
-def bfs(begin, end):
+def bfs(maze, begin, end):
     q = queue.Queue()
-    q.put(maze.start)
+    q.put(begin)
     moves = ['up', 'down', 'right', 'left']
     while not q.empty():
         v = q.get()
@@ -83,5 +84,6 @@ def dfs(maze, v):
             dfs(s.pop())
 
 # Hill Climbing
+def hc(maze, v)
 # Best First Search
 # A*
