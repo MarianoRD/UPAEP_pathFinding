@@ -69,3 +69,19 @@ def bfs(begin, end):
             temp = maze.move(v, x)
             if (temp != None):
                 q.put(temp)
+
+# Depth First Search
+def dfs(maze, v):
+    s = []
+    moves = ['up', 'down', 'right', 'left']
+    if ( (v[0] == end.x) and (v[1] == end.y) ):
+        return v
+    for x in moves:
+        temp = maze.move(v,x)
+        if (temp != None):
+            s.append(temp);
+            dfs(s.pop())
+
+# Hill Climbing
+# Best First Search
+# A*
