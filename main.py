@@ -10,12 +10,17 @@ class MazePosition(object):
 
     obstacle = False
     used = False
+    heuristic = -1
 
     def __init__(self, obstacle):
         self.obstacle = obstacle
 
     def setUsed(self):
         self.used = True
+
+    def setHeuristic(self, value)
+        self.heuristic = value
+
 
 class Maze():
     """Maze structure."""
@@ -55,7 +60,12 @@ class Maze():
     def print(self):
         pass
 
+
 # Algorithms
+
+def distanceBetweenDots(a, b):
+    d = sqrt( (a[0]-b[0])^2+(a[1]-b[1])^2 )
+    return d
 
 # Breadth First Search
 def bfs(maze, begin, end):
@@ -64,7 +74,7 @@ def bfs(maze, begin, end):
     moves = ['up', 'down', 'right', 'left']
     while not q.empty():
         v = q.get()
-        if ( (v[0] == end.x) and (v[1] == end.y) ):
+        if ( (v[0] == end[0]) and (v[1] == end[0]) ):
             return v
         for x in moves:
             temp = maze.move(v, x)
@@ -75,7 +85,7 @@ def bfs(maze, begin, end):
 def dfs(maze, v):
     s = []
     moves = ['up', 'down', 'right', 'left']
-    if ( (v[0] == end.x) and (v[1] == end.y) ):
+    if ( (v[0] == end[0]) and (v[1] == end[0]) ):
         return v
     for x in moves:
         temp = maze.move(v,x)
@@ -84,6 +94,28 @@ def dfs(maze, v):
             dfs(s.pop())
 
 # Hill Climbing
-def hc(maze, v)
+#def hc(maze, v)
 # Best First Search
+def bestfs(maze, begin, end):
+    q = queue.Queue()
+    moves = ['up', 'down', 'right', 'left']
+    v = begin
+    maze[v[0]][v[1]].setHeuristic(v, end)
+    q.put(v)
+    while not q.empty():
+        v = q.get()
+        if ( (v[0] == end[0]) and (v[1] == end[0]) ):
+            return v
+        tempQueue = []
+        for x in moves:
+            temp = maze.move()
+            maze[temp[0]][temp[1]].setHeuristic(v, end)
+            tempQueue.append(temp)
+        for x in range(len(tempQueue)):
+            # x, y = y, x Sort queue
+            pass
+        for x in tempQueue:
+            q.put(x)
+    return None
+
 # A*
