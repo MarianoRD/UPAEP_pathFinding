@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Path Finding - Artificial Inteligence Project</title>
+	<link rel="stylesheet" type="text/css" href="style_tablero.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="script_tablero2.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+	 crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+	<div id="controles">
+
+		<label>Width: </label>
+		<input type="number" id="ancho" value="15" max="50" min="2">
+		<label>Height: </label>
+		<input type="number" id="largo" value="10" max="25" min="1">
+		<button id="aplicar">Set</button>
+		<br>
+		<input id="file" type="file" onchange="$('#cargar').trigger('click')" />
+		<button id="cargar">Load</button>
+		<button id="save">Save</button>
+		<br>
+		<br>
+		<button id="p_inicio">Starting point</button>
+		<button id="p_final">Ending point</button>
+		<button id="obs">Obstacles</button>
+		
+		<select name="Algoritmos" id="meth">
+			<option value="Amplitud">BFS</option>
+			<option value="Profundidad">DFS</option>
+			<option value="Hill Climbing">Hill Climbing</option>
+			<option value="Best">Best Path First</option>
+			<option value="A">A*</option>
+		</select>
+		<button id="go">Solve</button>
+		<button id="limpiar">Clean</button>
+	</div>
+	<div id="contenido" ondragstart="return false;">
+	</div>
+	<div id="resultados">
+		<table class= "res">
+			<tr>
+				<th>
+					Algorithm
+				</th>
+				<th style="background-color: yellow;">
+					Steps
+				</th>
+				<th style="background-color: #cc33ff;">
+					Length
+				</th>
+				<th style="background-color: gray;">
+					In memory
+				</th>
+			</tr>
+			<tr>
+				<td class="algoritmo">BFS</td>
+				<td id="amplitud_pasos"></td>
+				<td id="amplitud_longitud"></td>
+				<td id="amplitud_cola"></td>
+			</tr>
+			<tr>
+				<td class="algoritmo">DFS</td>
+				<td id="profundidad_pasos"></td>
+				<td id="profundidad_longitud"></td>
+				<td id="profundidad_cola"></td>
+			</tr>
+			<tr>
+				<td class="algoritmo">Hill Climbing</td>
+				<td id="hill_pasos"></td>
+				<td id="hill_longitud"></td>
+				<td id="hill_cola"></td>
+			</tr>
+			<tr>
+				<td class="algoritmo">Best Path First</td>
+				<td id="best_pasos"></td>
+				<td id="best_longitud"></td>
+				<td id="best_cola"></td>
+			</tr>
+			<tr>
+				<td class="algoritmo">A*</td>
+				<td id="a_star_pasos"></td>
+				<td id="a_star_longitud"></td>
+				<td id="a_star_cola"></td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+
+</html>
