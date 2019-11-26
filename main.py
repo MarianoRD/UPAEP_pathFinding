@@ -120,3 +120,25 @@ def bestfs(maze, begin, end):
     return None
 
 # A*
+def astar(maze, begin, end):
+    q = queue.Queue()
+    q.put(begin)
+    moves = ['up', 'down', 'right', 'left']
+    came_from = {}
+    cost_so_far = {}
+    came_from[begin] = None
+    cost_so_far[begin] = 0
+
+    while not q.empty():
+        v = q.get()
+        if ( (v[0] == end[0]) and (v[1] == end[0]) ):
+            break
+        for x in moves:
+            next = maze.move(v, x)
+            cost = cost_so_far[v] + distanceBetweenDots(v, next)
+            if next not in cost_so_far or cost < cost_so_far[next]:
+                cost_so_far[next] = cost
+                priority = new_cost + distanceBetweenDots(next, end)
+                q.put(next)
+                came_from[next] = current
+    return came_from, cost_so_far
