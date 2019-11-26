@@ -94,7 +94,23 @@ def dfs(maze, v):
             dfs(s.pop())
 
 # Hill Climbing
-#def hc(maze, v)
+def hc(maze, begin, end):
+    currentNode= begin
+    moves = ['up', 'down', 'right', 'left']
+    while True:
+        vecinos = []
+        for x in moves:
+            vecinos.append(maze.move(currentNode, x))
+        nextEval = -5000
+        nextNode = None
+        for x in vecinos:
+            if (eval(x) > nextEval):
+                nextNode = x
+                nextEval = eval(x)
+        if (nextEval <= eval(v)):
+            return currentNode
+        currentNode= nextNode
+
 
 # Best First Search
 def bestfs(maze, begin, end):
