@@ -10,7 +10,7 @@ class MazePosition(object):
 
     obstacle = False
     used = False
-    heuristic = -1
+    distance = -1
 
     def __init__(self, obstacle):
         self.obstacle = obstacle
@@ -18,8 +18,8 @@ class MazePosition(object):
     def setUsed(self):
         self.used = True
 
-    def setHeuristic(self, value)
-        self.heuristic = value
+    def setDistance(self, value):
+        self.distance = value
 
 
 class Maze():
@@ -95,12 +95,13 @@ def dfs(maze, v):
 
 # Hill Climbing
 #def hc(maze, v)
+
 # Best First Search
 def bestfs(maze, begin, end):
     q = queue.Queue()
     moves = ['up', 'down', 'right', 'left']
     v = begin
-    maze[v[0]][v[1]].setHeuristic(v, end)
+    maze[v[0]][v[1]].setDistance(v, end)
     q.put(v)
     while not q.empty():
         v = q.get()
