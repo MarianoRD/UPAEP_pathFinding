@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
 	<title>Path Finding - Artificial Inteligence Project</title>
@@ -9,15 +8,15 @@
 		integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
 		crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style_tablero.css">
-	<script src="script_tablero2.js"></script>
 	<script
 		src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 		crossorigin="anonymous"></script>
 	<script
-	  src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
 	  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 	  crossorigin="anonymous"></script>
+	<script src="script_tablero2.js"></script>
 </head>
 
 <body>
@@ -70,36 +69,35 @@
 			</thead>
 			<tr>
 				<td class="algorithm">BFS</td>
-				<td id="amplitud_pasos"></td>
-				<td id="amplitud_longitud"></td>
-				<td id="amplitud_cola"></td>
+				<td id="bfs_steps"></td>
+				<td id="bfs_length"></td>
+				<td id="bfs_queue"></td>
 			</tr>
 			<tr>
 				<td class="algorithm">DFS</td>
-				<td id="profundidad_pasos"></td>
-				<td id="profundidad_longitud"></td>
-				<td id="profundidad_cola"></td>
+				<td id="dfs_steps"></td>
+				<td id="dfs_length"></td>
+				<td id="dfs_count"></td>
 			</tr>
 			<tr>
 				<td class="algorithm">Hill Climbing</td>
-				<td id="hill_pasos"></td>
-				<td id="hill_longitud"></td>
-				<td id="hill_cola"></td>
+				<td id="hill_steps"></td>
+				<td id="hill_length"></td>
+				<td id="hill_count"></td>
 			</tr>
 			<tr>
 				<td class="algorithm">Best Path First</td>
-				<td id="best_pasos"></td>
-				<td id="best_longitud"></td>
-				<td id="best_cola"></td>
+				<td id="best_steps"></td>
+				<td id="best_length"></td>
+				<td id="best_count"></td>
 			</tr>
 			<tr>
 				<td class="algorithm">A*</td>
-				<td id="a_star_pasos"></td>
-				<td id="a_star_longitud"></td>
-				<td id="a_star_cola"></td>
+				<td id="a_star_steps"></td>
+				<td id="a_star_length"></td>
+				<td id="a_star_count"></td>
 			</tr>
 		</table>
 	</div>
-
 </body>
 </html>
