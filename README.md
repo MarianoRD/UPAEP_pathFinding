@@ -1,6 +1,6 @@
 # Path finding algorithms
 
-This program should create or load a map, the map has the dimensions `nxn`
+This program should create or load a map, the map has the dimensions `NxM`
  defined by the user (or the file loaded). The program should allow the user to
  place obstacles in the map, as well as the beginning and end point.
 
@@ -17,12 +17,12 @@ The program needs to allow the user to save the map to a file, and show the way
 
 ## Dependencies
 
-* [Python 3.7.x](https://www.python.org/downloads/release/python-370/)
-* [TkInter](https://wiki.python.org/moin/TkInter)
-* [PyInstaller](https://www.pyinstaller.org/)
+* [Bootsrap 4.4.0](https://getbootstrap.com/)
+* [jQuery 3.4.1](https://jquery.com/)
+* [jQuery UI 1.12.1](https://jqueryui.com/)
 
 ## Usage
 
-```bash
-python3 program.py
-```
+Copy the files into a setup webserver. This files are tested with nginx v1.14.2
+
+Demo at https://ia.marianord.com

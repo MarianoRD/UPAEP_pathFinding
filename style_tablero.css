@@ -1,17 +1,17 @@
-.cell {	
+.cell {
 	border: 1px solid black;
 	padding: 10px;
 	width: 10px;
 	height: 10px;
 	cursor: pointer;
-	
+
 }
 .board
 {
 	border-collapse: collapse;
 	position: absolute;
-	left: 5%;
-	top: 200px;	
+	left: 50%;
+	top: 40px;
 }
 .que
 {
@@ -26,36 +26,31 @@
 {
 	background-color: red;
 }
-.obstaculo
+.obstacle
 {
 	background-color: black;
 }
-.visitado
+.visited
 {
-	
-	
 	transition: all 0.01s ease;
 }
-#resultados 
+#results
 {
-	
 	position: absolute;
-	left:60%;
-	top: 10px;
+	left: 3%;
+	top: 350px;
 }
-table.res ,th, td
+table.results ,th, td
 {
-	border-collapse: collapse;
-	border: 1px solid blueviolet;
-	padding: 5px;
+	border:1px dotted black;
+	padding:5px;
 }
 body {
-	background-color: #e6e6e6;
+	background-color: #ffffff;
 }
-#controles
-{
+#controls
+{   top: 100px;
 	padding: 10px;
-
 }
 input {
 	margin: 5px;
