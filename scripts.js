@@ -101,7 +101,7 @@ $(document).ready(function () {
 	$("#endPoint").click(function () {
 			status = 2;
 	});
-	$("#obstacle").click(function () {
+	$("#obstacles").click(function () {
 			status = 3;
 	});
 	$("#content").on("click", ".cell", function () {
@@ -123,7 +123,6 @@ $(document).ready(function () {
 			clean();
 		}
 	});
-
 	$("#content").on("mousedown", ".cell", function () {
 		if (status == 3 && !locked) {
 			mousedown = true;
@@ -170,8 +169,9 @@ $(document).ready(function () {
 });
 
 function showPath(winner, algorithm) {
-	if (winner == null)
-		return;
+	if (winner == null) {
+    return;
+  }
 	var length = 0;
 	let nav = winner.previous;
 	while (nav != null) {
@@ -241,14 +241,15 @@ function isValid(x, y) {
 }
 
 function distanceDots(p, end) {
-	xEnd = getX(end);
-	yEnd = getY(end);
-	x = getX(p);
-	y = getY(p);
+	var xEnd = getX(end);
+	var yEnd = getY(end);
+	var x = getX(p);
+	var y = getY(p);
 
-	distance = (xEnd-x)^2 + (yEnd - y)^2;
+	distance = Math.pow((xEnd-x), 2) + Math.pow((yEnd - y), 2);
+  distance = Math.sqrt(distance);
 
-	return Math.sqrt(distance);
+	return distance;
 }
 
 function mark(cell) {
@@ -288,8 +289,7 @@ function bfs(start, end) {
 		}
 		$("#bfs_steps").text(steps);
 		$("#bfs_queue").text(qCount);
-		var stores = $("#bfs_length");
-		animator(order, 0, winner, stores);
+		animator(order, 0, winner, $("#bfs_length"));
 }
 
 function dfs(start, end) {
@@ -327,44 +327,53 @@ function dfs(start, end) {
 }
 
 function hill(start, end) {
+  let steps = 0, count = 0;
+	let current;
+	let order = [];
+	let succesors = [];
+	var winner = null;
+  let loop = 1;
 
-		let current;
-		let steps = 0, count = 0;
-		let order = [];
-		let succesors = [];
-		let temp;
-		var winner = null;
-		succesors.push({cell: $(start), score: distanceDots(start, end), previous: null});
-		temp = succesors[0];
-		do {
-				steps++;
-				succesors.sort((x, y) => x.score - y.score);
-				order.push({ cell: $(temp.cell) });
-				if (succesors[0].score > temp.score) {
-					break;
-				} else {
-					temp = succesors.shift();
-				}
-				current = temp.cell;
-				order.push({cell: $(current)});
-				succesors = [];
-				mark($(current));
-				if (getX(current) == getX(end) && getY(current) == getY(end)) {
-					winner = temp;
-					break;
-				}
-				for (var i = 0; i < moves.length; i++) {
-					var newX = getX(current) + moves[i].x;
-					var newY = getY(current) + moves[i].y;
-					if (isValid(newX, newY)) {
-						var newcell = $("#" + newX + "_" + newY);
-						var newSuccesor = {cell: newcell, score: distanceDots($(newcell), $(end)), previous: temp};
-						succesors.push(newSuccesor);
-						$(newSuccesor.cell).addClass("que");
-						count++;
-					}
-				}
-		} while (succesors.length > 0);
+	succesors.push({cell: $(start), score: distanceDots(start, end), previous: null});
+	current = succesors[0];
+  // Check if the first cell is the goal
+  if (getX(current.cell) == getX(end) && getY(current.cell) == getY(end)) {
+    winner = current;
+    loop = 0;
+  }
+  while (succesors.length > 0 && loop == 1) {
+    steps++;
+    console.log(steps);
+    for (var i = 0; i < moves.length; i++) {
+      var newX = getX(current.cell) + moves[i].x;
+      var newY = getY(current.cell) + moves[i].y;
+      if (isValid(newX, newY)) {
+        console.log("Adding (" + newX + "," + newY + ")");
+        var newcell = $("#" + newX + "_" + newY);
+        var newSuccesor = {cell: newcell, score: distanceDots($(newcell), $(end)), previous: current};
+        succesors.push(newSuccesor);
+        $(newSuccesor.cell).addClass("que");
+        count++;
+      }
+    }
+    for (var i = 0; i < succesors.length; i++) {
+      let temp = succesors.shift();
+      console.log("¿"+temp.score+" < "+current.score+"?");
+      if (temp.score < current.score) {
+        console.log("Changing to: " + temp.score);
+        current.cell.addClass("visited");
+        order.push(current);
+        current = temp;
+        break;
+      }
+    }
+    if (getX(current.cell) == getX(end) && getY(current.cell) == getY(end)) {
+      console.log("WE HAVE A WINNER");
+      winner = current;
+      loop = 0;
+      break;
+    }
+  }
 		$("#hill_steps").text(steps);
 		$("#hill_count").text(count);
 		animator(order, 0, winner, $("#hill_length"));
