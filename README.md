@@ -1,11 +1,9 @@
 # Path finding algorithms
 
-This program should create or load a map, the map has the dimensions `NxM`
- defined by the user (or the file loaded). The program should allow the user to
- place obstacles in the map, as well as the beginning and end point.
-
-The program needs to allow the user to save the map to a file, and show the way
- the path was found, its length and the total number of steps used.
+This program creates or load a map in `.json` format, the map has the
+dimensions `NxM` defined by the user (or the file loaded). The program
+allows the user to place obstacles in the map, as well as the beginning
+and end point.
 
 ## Algorithms available
 
@@ -23,6 +21,32 @@ The program needs to allow the user to save the map to a file, and show the way
 
 ## Usage
 
-Copy the files into a setup webserver. This files are tested with nginx v1.14.2
+## New map
 
-Demo at https://ia.marianord.com
+1. Set the dimensions of the grid to use.
+1. Select and set the starting and end point.
+1. Select and set all the obstacles desired.
+1. Choose one of the algorithms available.
+1. Solve
+
+## Load map
+
+1. Select the file
+1. Choose one of the algorithms available.
+1. Solve
+
+## Deployment
+
+Copy the files into an already setup webserver.
+
+## Compatibility
+
+Tested and known working with:
+
+* Firefox ESR v68.2.0
+* Firefox v70.0.0
+* Google Chrome v78.0.3904
+
+## Demo
+
+Demo [here](https://ia.marianord.com)

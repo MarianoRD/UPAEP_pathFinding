@@ -30,7 +30,10 @@
 		<input type="number" id="height" value="10" max="100" min="1">
 		<button id="set" type="button" class="btn btn-warning">Set</button>
 		<br><br>
-		<br>
+		<input id="file" type="file" lass="btn btn-outline-secondary" onchange="$('#load').trigger('click')" />
+		<button type="button" class="btn btn-primary" id="load">Load</button>
+		<button id="save"type="button" class="btn btn-success">Save</button>
+		<br><br>
 		<button type="button" class="btn btn-primary" id="startPoint">Starting point</button>
 		<button type="button" class="btn btn-danger" id="endPoint">Ending point</button>
 		<button type="button" class="btn btn-dark" id="obstacles">Obstacles</button>
@@ -56,10 +59,10 @@
 				<th>
 					Algorithm
 				</th>
-				<th style="background-color: #ffae00;">
+				<th style="background-color: #00ffd0;">
 					Steps
 				</th>
-				<th style="background-color: #ff00f3;">
+				<th style="background-color: green;">
 					Length
 				</th>
 				<th style="background-color: rgb(190, 190, 190);">
